@@ -13,7 +13,7 @@ function Employee() {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'
-            }})
+           }})
                 .then((response) => response.json())
                 .then((data) => setEmployees(data))
                 .catch((error) => alert("Erro ao carregar dados dos funcionários. " + error));
