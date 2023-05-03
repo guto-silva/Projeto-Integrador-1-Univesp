@@ -2,7 +2,6 @@ import EditModalDocument from "../EditModalDocument";
 import styles from './TBodyDataDocument.module.css';
 
 function TBodyDataDocument({ document }) {
-    console.log(document)
     return (
         <tr>
             <td>{document.protocolo}</td>

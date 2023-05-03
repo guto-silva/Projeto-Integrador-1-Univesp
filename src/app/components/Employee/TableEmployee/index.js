@@ -8,11 +8,12 @@ import ModalEmployee from '../ModalEmployee';
 
 function Employee() {
     const [employees, setEmployees] = useState([]);
+   
     useEffect(() => {
         fetch("http://localhost:8080/employees", {
             method: 'GET',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
            }})
                 .then((response) => response.json())
                 .then((data) => setEmployees(data))

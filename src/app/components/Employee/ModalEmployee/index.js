@@ -36,7 +36,7 @@ function ModalEmployee() {
             }
         }).then(retorno => retorno.json())
           .then(retorno_convertido => {
-            console.log(retorno_convertido);
+            
           });
     }
 
