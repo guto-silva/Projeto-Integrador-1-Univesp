@@ -8,12 +8,14 @@ import ModalEmployee from '../ModalEmployee';
 
 function Employee() {
     const [employees, setEmployees] = useState([]);
-   
+    
     useEffect(() => {
+        const funcionarioToken = JSON.parse(window.localStorage.getItem("FuncionarioToken"));
         fetch("http://localhost:8080/employees", {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
+                'Authorization':  funcionarioToken.token
            }})
                 .then((response) => response.json())
                 .then((data) => setEmployees(data))

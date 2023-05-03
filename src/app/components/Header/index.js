@@ -13,7 +13,7 @@ function Header() {
                         <span>e Saída de Processos</span>
                     </Navbar.Brand>
                     <Nav>
-                        <Nav.Link href="/">Processos</Nav.Link>
+                        <Nav.Link href="/documents">Processos</Nav.Link>
                         <Nav.Link href="/employees">Funcionários</Nav.Link>
                         <Nav.Link href="/departments">Departamentos</Nav.Link>
                     </Nav>

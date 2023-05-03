@@ -34,9 +34,9 @@ function ModalEmployee() {
                 'Content-type': 'application/json',
                 'Accept': 'application/json'
             }
-        }).then(retorno => retorno.json())
-          .then(retorno_convertido => {
-            
+        }).then(response => response.json())
+          .then(response => {
+                window.location.reload()
           });
     }
 

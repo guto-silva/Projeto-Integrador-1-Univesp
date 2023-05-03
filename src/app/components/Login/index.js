@@ -5,9 +5,11 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import styles from './Login.module.css';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function Login() {
     
+    const navigate = useNavigate();
     const employeeData = {
         "id": null,
         "funcao": "",
@@ -38,6 +40,8 @@ function Login() {
           .then(token => {
             if(token !== null && token !== "") {
                 localStorage.setItem("FuncionarioToken", JSON.stringify(token));
+                navigate("/documents")
+                window.location.reload();
             }
           });
     }
