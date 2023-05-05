@@ -3,7 +3,7 @@ import Form from 'react-bootstrap/Form';
 function FormModalDepartment() {
     return (
         <Form>
-            <Form.Group className="mb-3" controlId="formTramite">
+            <Form.Group className="mb-3" controlId="formNumeroTramite">
                 <Form.Label>Número do Trâmite</Form.Label>
                 <Form.Control type="text" placeholder="Digite o número de matrícula" />
             </Form.Group>

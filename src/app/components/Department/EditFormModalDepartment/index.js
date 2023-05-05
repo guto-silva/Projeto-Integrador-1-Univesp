@@ -5,7 +5,7 @@ function EditFormModalDepartment( { department, edit } ) {
         <Form>
             <Form.Group className="mb-3" controlId="formTramite">
                 <Form.Label>Número do Trâmite</Form.Label>
-                <Form.Control type="text" value={department.tramite} disabled={edit} />
+                <Form.Control type="text" value={department.numeroTramite} disabled={edit} />
             </Form.Group>
             <Form.Group className="mb-3" controlId="formNomeDepartamento">
                 <Form.Label>Nome do Departamento</Form.Label>

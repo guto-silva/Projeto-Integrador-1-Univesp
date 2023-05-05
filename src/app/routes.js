@@ -16,15 +16,6 @@ function AppRoutes() {
 
 
     return (
-        // <BrowserRouter>
-        //     <Routes>
-        //         <Route path="/" element={<DocumentPage />}></Route>
-        //         <Route path="/employees" element={<EmployeePage />}></Route>
-        //         <Route path="/departments" element={<DepartmentPage />}></Route>
-        //         <Route path="/login" element={<LoginPage />}></Route>
-        //     </Routes>
-        // </BrowserRouter>
-
         <BrowserRouter>
             <Fragment>
                 <Routes>
