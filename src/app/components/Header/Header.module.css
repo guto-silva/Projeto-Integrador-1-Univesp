@@ -5,3 +5,9 @@ header {
     display: flex;
     flex-direction: column;
 }
+
+.botaoSair {
+    position: fixed;
+    right: 2em;
+    width: 5em;
+}
