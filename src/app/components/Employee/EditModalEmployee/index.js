@@ -2,12 +2,14 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye } from "@fortawesome/free-solid-svg-icons";
 import { faPen } from "@fortawesome/free-solid-svg-icons";
 import Button from 'react-bootstrap/Button';
-// import Alert from 'react-bootstrap/Alert';
 import Modal from 'react-bootstrap/Modal';
 import { useState } from 'react';
 // import EditFormModalEmployee from '../EditFormModalEmployee';
 import Form from 'react-bootstrap/Form';
-// import styles from './EditModalEmployee.module.css';
+import SuccessAlert from "../../Alerts/SucessAlert";
+import styles from './EditModalEmployee.module.css';
+import { API_URL } from "../../../../config";
+
 
 function EditModalEmployee({ employee }) {
     const funcionarioToken = JSON.parse(window.localStorage.getItem("FuncionarioToken"));
@@ -21,15 +23,28 @@ function EditModalEmployee({ employee }) {
         "nome": nome,
         "funcao": funcao
     }
-
-
-    const [show, setShow] = useState(false);
+   
     const [edit, setEdit] = useState(true);
+    const [visible, setVisible] = useState(false);
+    const [type, setType] = useState("success");
+    const [message, setMessage] = useState("Dados alterados com sucesso!");
+    const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
+    const timer = (type, msg) => {
+        setType(type);
+        setMessage(msg);
+        setVisible(true);
+        setTimeout(() => {
+            setVisible(false);
+            window.location.reload()
+        }, 1200);
+    }
+
     const editar = () => {
-        fetch(`http://localhost:8080/employee/edit/${employee.id}`, {
+        
+        fetch(`${API_URL}/employee/edit/${employee.id}`, {
             method: 'PUT',
             body: JSON.stringify(employeeData),
             headers: {
@@ -39,10 +54,11 @@ function EditModalEmployee({ employee }) {
             }
         }).then(response => {
             if (response.ok) {
-                alert("Dados alterados com secesso!");
+                timer('success', 'Dados alterados com secesso!');
+                
             }
             else {
-                alert("Ocorreu algum problema e os dados não foram salvos.");
+                timer('danger', 'Ocorreu algum problema e os dados não foram salvos.');
             }
         })
     }
@@ -81,11 +97,10 @@ function EditModalEmployee({ employee }) {
                     <Button onClick={handleClose} variant="outline-dark">Cancelar</Button>
                     <Button variant="dark" onClick={editar}>Salvar</Button>
                 </Modal.Footer>
-                {/* <Alert variant="success" onClose={() => setShow(false)} dismissible>
-                    <p className={styles.alertMessage}>
-                        Dados alterados com sucesso!
-                    </p>
-                </Alert> */}
+                {
+                    visible ? <div className={styles.alert}><SuccessAlert tipo={type} msg={message} /></div> : ''
+                    
+                }
             </Modal>
         </>
     );

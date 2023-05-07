@@ -11,7 +11,8 @@ function Employee() {
     
     useEffect(() => {
         const funcionarioToken = JSON.parse(window.localStorage.getItem("FuncionarioToken"));
-        fetch("http://localhost:8080/employees", {
+        //http://localhost:8080/employees
+        fetch("https://guto.dev.br:8443/employees", {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',

@@ -1,3 +1,4 @@
+import { API_URL } from "../../../../config";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye } from "@fortawesome/free-solid-svg-icons";
 import { faPen } from "@fortawesome/free-solid-svg-icons";
@@ -6,6 +7,9 @@ import Modal from 'react-bootstrap/Modal';
 import { useState } from 'react';
 // import EditFormModalDepartment from '../EditFormModalDepartment';
 import Form from 'react-bootstrap/Form';
+import SuccessAlert from '../../Alerts/SucessAlert';
+import styles from './EditModalDepartment.module.css';
+
 
 function EditModalDepartment({ department }) {
     const funcionarioToken = JSON.parse(window.localStorage.getItem("FuncionarioToken"));
@@ -24,8 +28,22 @@ function EditModalDepartment({ department }) {
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
+    const [visible, setVisible] = useState(false);
+    const [type, setType] = useState('');
+    const [message, setMessage] = useState('');
+
+    const timer = (tipo, msg) => {
+        setType(tipo);
+        setMessage(msg);
+        setVisible(true);
+        setTimeout(() => {
+            setVisible(false);
+        }, 2000);
+    }
+
     const editar = async () => {
-        await fetch(`http://localhost:8080/department/edit/${department.id}`, {
+        
+        await fetch(`${API_URL}/department/edit/${department.id}`, {
             method: 'PUT',
             body: JSON.stringify(departmentData),
             headers: {
@@ -35,7 +53,11 @@ function EditModalDepartment({ department }) {
             }
         }).then(response => {
             if(response.ok) {
-                alert("Dados alterados com sucesso!");
+                timer('success', 'Dados alterados com sucesso!');
+                window.location.reload();
+            }
+            else {
+                timer('danger', 'Não foi possível atualizar os dados');
             }
         });
     }
@@ -69,6 +91,7 @@ function EditModalDepartment({ department }) {
                     <Button onClick={handleClose} variant="outline-dark">Cancelar</Button>
                     <Button variant="dark" onClick={editar}>Salvar</Button>
                 </Modal.Footer>
+                {visible ? <div className={styles.alert}><SuccessAlert tipo={type} msg={message}/></div> : ''}
             </Modal>
         </>
     );

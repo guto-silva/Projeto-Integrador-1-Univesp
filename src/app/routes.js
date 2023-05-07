@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { HashRouter, Route, Routes } from "react-router-dom";
 import { Fragment } from "react";
 import EmployeePage from './pages/EmployeePage';
 import DocumentPage from "./pages/DocumentPage";
@@ -10,13 +10,11 @@ function AppRoutes() {
     const token = window.localStorage.getItem("FuncionarioToken");
     
     const Private = ({ Item }) => {
-        console.log(token);
         return token !== null ? <Item /> : <LoginPage />;
     };
 
-
     return (
-        <BrowserRouter>
+        <HashRouter hashType="slash">
             <Fragment>
                 <Routes>
                     <Route path="/" element={<LoginPage />}></Route>
@@ -27,7 +25,7 @@ function AppRoutes() {
                     <Route path="*" element={<LoginPage />}></Route>
                 </Routes>
             </Fragment>
-        </BrowserRouter>
+        </HashRouter>
     );
 }
 

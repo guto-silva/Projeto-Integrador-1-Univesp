@@ -9,9 +9,9 @@ function Header() {
 
     const sair = () => {
         window.localStorage.removeItem("FuncionarioToken");
-        window.location.href = "/login";
+        window.location.href = "/";
     }
-  
+
     return (
         <header>
             <Navbar bg="dark" variant="dark" fixed="top">
@@ -20,16 +20,15 @@ function Header() {
                         <span>Sistema de Controle de Entrada</span>
                         <span>e Saída de Processos</span>
                     </Navbar.Brand>
-                    {window.location.pathname === '/login' || window.location.pathname === '/' ? 
-                        <Nav>
-                        
-                        </Nav> :
+                    {window.localStorage.length > 0 ?
                         <Nav className={styles.menu}>
-                            <Nav.Link href="/documents">Processos</Nav.Link>
-                            <Nav.Link href="/employees">Funcionários</Nav.Link>
-                            <Nav.Link href="/departments">Departamentos</Nav.Link>
+                            <Nav.Link href="#/documents">Processos</Nav.Link>
+                            <Nav.Link href="#/employees">Funcionários</Nav.Link>
+                            <Nav.Link href="#/departments">Departamentos</Nav.Link>
                             <Button className={styles.botaoSair} variant="outline-light" onClick={sair}>Sair</Button>
-                        </Nav> }
+                        </Nav> :
+                        <Nav></Nav>
+                    }
                 </Container>
             </Navbar>
         </header>

@@ -12,7 +12,8 @@ function TableDepartment() {
 
     useEffect(() => {
         const funcionarioToken = JSON.parse(window.localStorage.getItem("FuncionarioToken"));
-        fetch("http://localhost:8080/departments", {
+        //http://localhost:8080/departments
+        fetch("https://guto.dev.br:8443/departments", {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
