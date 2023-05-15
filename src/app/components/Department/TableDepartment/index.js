@@ -5,6 +5,7 @@ import styles from './TableDepartment.module.css';
 import TBodyDataDepartment from '../TBodyDataDepartment';
 import ModalDepartment from '../ModalDepartment';
 import { useState, useEffect } from 'react';
+import { API_URL } from '../../../../config';
 
 function TableDepartment() {
     
@@ -12,8 +13,7 @@ function TableDepartment() {
 
     useEffect(() => {
         const funcionarioToken = JSON.parse(window.localStorage.getItem("FuncionarioToken"));
-        //http://localhost:8080/departments
-        fetch("https://guto.dev.br:8443/departments", {
+        fetch(API_URL+"/departments", {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',

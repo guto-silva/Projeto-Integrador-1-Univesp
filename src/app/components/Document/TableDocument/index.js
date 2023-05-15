@@ -1,23 +1,25 @@
 import Container from 'react-bootstrap/Container';
 import Table from 'react-bootstrap/Table';
-//import { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import TBodyDataDocument from '../TBodyDataDocument';
-import documents from '../../../../json/documents.json';
 import styles from './TableDocument.module.css';
 import ModalDocument from '../ModalDocument';
+import { API_URL } from '../../../../config';
 
 function TableDocument() {
-    // const [documents, setDocuments] = useState([]);
-    //  useEffect(() => {
-    //     fetch("http://localhost:8080/api/documents", {
-    //         method: 'GET',
-    //         headers: {
-    //             'Content-Type': 'application/json'
-    //         }
-    //     }).then((response) => response.json())
-    //       .then((data) => setDocuments(data))
-    //       .catch((error) => alert('Erro ao carregar dados dos processos.' + error))
-    // }, []);
+    const funcionarioToken = JSON.parse(window.localStorage.getItem("FuncionarioToken"));
+    const [documents, setDocuments] = useState([]);
+     useEffect(() => {
+        fetch(API_URL+"/documents", {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization':  funcionarioToken.token
+            }
+        }).then((response) => response.json())
+          .then((data) => setDocuments(data))
+          .catch((error) => alert('Erro ao carregar dados dos processos.' + error))
+    }, []);
 
     return (
         <Container fluid className={styles.container}>

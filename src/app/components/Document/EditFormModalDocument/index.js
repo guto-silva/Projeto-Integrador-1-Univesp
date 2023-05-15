@@ -13,13 +13,13 @@ function EditFormModalDocument( { document, edit } ) {
                     <Col>
                         <Form.Group className="mb-3" controlId="formProtocolo">
                             <Form.Label>Número do Protocolo</Form.Label>
-                            <Form.Control type="text" value={document.protocolo} disabled={edit}/>
+                            <Form.Control type="text" defaultValue={document.numeroProtocolo} disabled={edit}/>
                         </Form.Group>
                     </Col>
                     <Col>
                         <Form.Group className="mb-3" controlId="formRequisicao">
                             <Form.Label>Número da requisição</Form.Label>
-                            <Form.Control type="text" value={document.requisicao} disabled={edit}/>
+                            <Form.Control type="text" defaultValue={document.numeroRequisicao} disabled={edit}/>
                         </Form.Group>
                     </Col>
                 </Row>
@@ -40,7 +40,7 @@ function EditFormModalDocument( { document, edit } ) {
                         <Form.Group className="mb-3" controlId="formOrigem">
                             <Form.Label>Departamento de Origem</Form.Label>
                             <Form.Select disabled={edit}>
-                                <option defaultValue={document.origem.id}>{document.origem.nome}</option>
+                                <option defaultValue={document.departamentoOrigem.id}>{document.departamentoOrigem.nome}</option>
                                 {                                   
                                     departments.map((department) => <option value={department.id} key={department.id}>{department.nome}</option>)
                                 }

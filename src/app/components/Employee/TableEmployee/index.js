@@ -5,14 +5,14 @@ import { useState, useEffect } from 'react';
 import TBodyDataEmployee from '../TBodyDataEmployee';
 import styles from './TableEmployee.module.css';
 import ModalEmployee from '../ModalEmployee';
+import { API_URL } from '../../../../config';
 
 function Employee() {
     const [employees, setEmployees] = useState([]);
     
     useEffect(() => {
         const funcionarioToken = JSON.parse(window.localStorage.getItem("FuncionarioToken"));
-        //http://localhost:8080/employees
-        fetch("https://guto.dev.br:8443/employees", {
+        fetch(API_URL+"/employees", {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
